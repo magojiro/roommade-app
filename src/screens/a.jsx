@@ -1,10 +1,17 @@
 /* Group A — Entry */
+const { useState } = React;
 const {
   RM_C, RM_F, RIcon, RMButton, RMTextLink, RMH1, RMLabel, RMChip, RMTag,
   RMAppBar, RMScreen, RMSectionHead, RM_BTN_RESET, RM_IMG, rmMoney
 } = window;
 
 const RM_IMG_A = window.RM_IMG;
+
+const RM_CASES = {
+  waldorf: {
+    photos: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => "assets/case/waldorf-" + n + ".jpg")
+  }
+};
 
 function ScreenA1({ go, state }) {
   return (
@@ -65,6 +72,9 @@ function ScreenA1({ go, state }) {
 }
 
 function ScreenA2({ go, state }) {
+  const [viewer, setViewer] = useState(null); // { kind: "photos", i } | { kind: "video" }
+  const [muted, setMuted] = useState(true);
+
   const creditPill = (
     <button type="button" onClick={() => go("D6")} style={{
       display: "flex", alignItems: "center", gap: 6, height: 30, padding: "0 11px",
@@ -96,8 +106,113 @@ function ScreenA2({ go, state }) {
     { img: RM_IMG_A.bath, room: "Bath", style: "Soft Coastal" }
   ];
 
+  const caseCard = (opt) => (
+    <button type="button" key={opt.key} onClick={opt.onClick} style={{
+      position: "relative", width: "100%", height: 186, borderRadius: 14, overflow: "hidden",
+      border: 0, padding: 0, cursor: "pointer", background: RM_C.sand, textAlign: "left", display: "block"
+    }}>
+      <img src={opt.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.30) 0%, rgba(20,16,12,0.02) 34%, rgba(20,16,12,0.80) 100%)" }} />
+
+      <div style={{ position: "absolute", top: 12, left: 13, right: 13, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <span style={{
+          fontFamily: "var(--mono)", fontSize: 7.5, letterSpacing: "0.18em", color: "#FBF7F0",
+          background: "rgba(20,16,12,0.44)", border: "1px solid rgba(251,247,240,0.28)",
+          borderRadius: 100, padding: "3px 7px"
+        }}>{opt.badge}</span>
+        {opt.media && (
+          <span style={{
+            display: "flex", alignItems: "center", gap: 4, fontFamily: RM_F.sans, fontSize: 9,
+            color: "#FBF7F0", background: "rgba(20,16,12,0.44)", border: "1px solid rgba(251,247,240,0.28)",
+            borderRadius: 100, padding: "2px 7px 2px 6px"
+          }}>
+            {opt.media === "video" ? <RIcon name="chevron" size={9} color="#FBF7F0" /> : <RIcon name="grid" size={9} color="#FBF7F0" />}
+            {opt.mediaLabel}
+          </span>
+        )}
+      </div>
+
+      {opt.media === "video" && (
+        <div style={{
+          position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-56%)",
+          width: 46, height: 46, borderRadius: 100, background: "rgba(251,247,240,0.94)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 6px 18px rgba(20,16,12,0.35)"
+        }}>
+          <div style={{ width: 0, height: 0, borderLeft: "12px solid " + RM_C.ink, borderTop: "7px solid transparent", borderBottom: "7px solid transparent", marginLeft: 2 }} />
+        </div>
+      )}
+
+      <div style={{ position: "absolute", left: 14, right: 14, bottom: 12 }}>
+        <div style={{ fontFamily: RM_F.serif, fontSize: 18.5, color: "#FBF7F0", letterSpacing: "-0.01em", lineHeight: 1.2 }}>{opt.title}</div>
+        <div style={{ fontFamily: RM_F.sans, fontSize: 10, lineHeight: 1.4, color: "rgba(251,247,240,0.80)", marginTop: 4 }}>{opt.sub}</div>
+      </div>
+    </button>
+  );
+
   return (
-    <RMScreen tab="A2" onNav={go}>
+    <RMScreen tab="A2" onNav={go} overlay={viewer && (
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 40, background: "rgba(14,11,8,0.94)",
+        display: "flex", flexDirection: "column"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "56px 16px 10px", flex: "none" }}>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontFamily: RM_F.sans, fontSize: 13, fontWeight: 600, color: "#FBF7F0" }}>
+              {viewer.kind === "video" ? "Carlyle Hotel · renovation" : "Waldorf Astoria · 8-year renovation"}
+            </div>
+            <div style={{ fontFamily: RM_F.sans, fontSize: 10, color: "rgba(251,247,240,0.6)", marginTop: 2 }}>
+              {viewer.kind === "video"
+                ? "01:51 · via 设计学长 on RED"
+                : String(viewer.i + 1) + " / " + RM_CASES.waldorf.photos.length + " · via 外滩设计酒店 on RED"}
+            </div>
+          </div>
+          <button type="button" onClick={() => setViewer(null)} style={{
+            width: 32, height: 32, borderRadius: 100, border: "1px solid rgba(251,247,240,0.3)",
+            background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flex: "none"
+          }} aria-label="Close">
+            <RIcon name="close" size={16} color="#FBF7F0" />
+          </button>
+        </div>
+
+        {viewer.kind === "video" ? (
+          <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px" }}>
+            <video
+              src="assets/video/case-carlyle-web.mp4"
+              poster="assets/case/carlyle-poster.jpg"
+              controls autoPlay playsInline muted={muted}
+              style={{ width: "100%", maxHeight: "100%", borderRadius: 12, background: "#000", display: "block" }}
+            />
+            <div style={{ display: "flex", gap: 8, marginTop: 12, flex: "none" }}>
+              <button type="button" onClick={() => setMuted((m) => !m)} style={{
+                height: 34, padding: "0 14px", borderRadius: 100, border: "1px solid rgba(251,247,240,0.3)",
+                background: muted ? "rgba(251,247,240,0.12)" : "rgba(251,247,240,0.9)",
+                color: muted ? "#FBF7F0" : RM_C.ink, fontFamily: RM_F.sans, fontSize: 11.5, fontWeight: 600, cursor: "pointer"
+              }}>{muted ? "Sound on" : "Sound off"}</button>
+              <div style={{ flex: 1, fontFamily: RM_F.sans, fontSize: 9.5, lineHeight: 1.5, color: "rgba(251,247,240,0.55)", alignSelf: "center" }}>
+                Plays inline · tap to pause
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px 18px" }}>
+            <div style={{ flex: 1, minHeight: 0, borderRadius: 12, overflow: "hidden", background: "#000" }}>
+              <img src={RM_CASES.waldorf.photos[viewer.i]} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+            </div>
+            <div style={{ display: "flex", gap: 6, marginTop: 12, flex: "none", overflowX: "auto", paddingBottom: 2 }}>
+              {RM_CASES.waldorf.photos.map((p, i) => (
+                <button type="button" key={p} onClick={() => setViewer({ kind: "photos", i })} style={{
+                  width: 44, height: 44, flex: "none", borderRadius: 7, overflow: "hidden", padding: 0, cursor: "pointer",
+                  border: i === viewer.i ? "2px solid #FBF7F0" : "2px solid transparent", background: "none", opacity: i === viewer.i ? 1 : 0.55
+                }}>
+                  <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}>
       <div style={{ padding: "56px 20px 0" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -145,6 +260,32 @@ function ScreenA2({ go, state }) {
             <RIcon name="arrowR" size={13} color="#FBF7F0" />
           </span>
         </button>
+
+        <div style={{ marginTop: 26 }}>
+          <RMSectionHead title="Hotel renovations, decoded" action="Inspiration" onAction={() => go("C1")} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
+            {caseCard({
+              key: "waldorf",
+              badge: "NEW YORK · 8 YEARS",
+              media: "photos",
+              mediaLabel: "8 photos",
+              img: "assets/case/waldorf-1.jpg",
+              title: "Waldorf Astoria, rebuilt",
+              sub: "$6B+ from acquisition to completion · 1,400 rooms cut to 375",
+              onClick: () => setViewer({ kind: "photos", i: 0 })
+            })}
+            {caseCard({
+              key: "carlyle",
+              badge: "NEW YORK · CARLYLE",
+              media: "video",
+              mediaLabel: "01:51",
+              img: "assets/case/carlyle-cover.jpg",
+              title: "The Carlyle, by Ji Yutang",
+              sub: "Room-by-room walkthrough of the Upper East Side landmark",
+              onClick: () => { setMuted(true); setViewer({ kind: "video" }); }
+            })}
+          </div>
+        </div>
 
         <div style={{ marginTop: 26 }}>
           <RMSectionHead title="Continue your design" action="All projects" onAction={() => go("D1")} />

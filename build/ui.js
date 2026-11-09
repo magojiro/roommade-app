@@ -1,5 +1,5 @@
 (() => {
-  // v4/src/ui.jsx
+  // src/ui.jsx
   var RM_C = {
     paper: "#F7F3EC",
     card: "#FFFFFF",
@@ -254,15 +254,16 @@
       } }, it.label));
     }));
   }
-  function RMScreen({ children, tab, onNav, footer, bg = RM_C.paper, scrollRef }) {
+  function RMScreen({ children, tab, onNav, footer, bg = RM_C.paper, scrollRef, overlay }) {
     return /* @__PURE__ */ React.createElement("div", { style: {
+      position: "relative",
       height: "100%",
       display: "flex",
       flexDirection: "column",
       background: bg,
       color: RM_C.ink,
       fontFamily: RM_F.sans
-    } }, /* @__PURE__ */ React.createElement("div", { ref: scrollRef, className: "rm-scroll", style: { flex: 1, overflowY: "auto", overflowX: "hidden", WebkitOverflowScrolling: "touch" } }, children), footer, tab && /* @__PURE__ */ React.createElement(RMTabBar, { active: tab, onNav }));
+    } }, /* @__PURE__ */ React.createElement("div", { ref: scrollRef, className: "rm-scroll", style: { flex: 1, overflowY: "auto", overflowX: "hidden", WebkitOverflowScrolling: "touch" } }, children), footer, tab && /* @__PURE__ */ React.createElement(RMTabBar, { active: tab, onNav }), overlay);
   }
   function RMSectionHead({ title, action, onAction, style }) {
     return /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, ...style } }, /* @__PURE__ */ React.createElement("h2", { style: {

@@ -224,9 +224,10 @@ function RMTabBar({ active, onNav }) {
   );
 }
 
-function RMScreen({ children, tab, onNav, footer, bg = RM_C.paper, scrollRef }) {
+function RMScreen({ children, tab, onNav, footer, bg = RM_C.paper, scrollRef, overlay }) {
   return (
     <div style={{
+      position: "relative",
       height: "100%", display: "flex", flexDirection: "column",
       background: bg, color: RM_C.ink, fontFamily: RM_F.sans
     }}>
@@ -235,6 +236,7 @@ function RMScreen({ children, tab, onNav, footer, bg = RM_C.paper, scrollRef }) 
       </div>
       {footer}
       {tab && <RMTabBar active={tab} onNav={onNav} />}
+      {overlay}
     </div>
   );
 }
