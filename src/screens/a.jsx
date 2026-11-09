@@ -13,7 +13,10 @@ function ScreenA1({ go, state }) {
         <img src={RM_IMG_A.after} alt="A warm modern living room" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.05) 38%, rgba(20,16,12,0.28) 100%)" }} />
         <div style={{ position: "absolute", top: 62, left: 22, right: 22, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: RM_F.serif, fontSize: 22, color: "#FBF7F0", letterSpacing: "-0.02em" }}>RoomMade</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+            <img src="assets/rm-logo-mark-white.png" alt="RARITAG" style={{ height: 36, width: 36, objectFit: "contain", display: "block", flex: "none", opacity: 0.94 }} />
+            <div style={{ fontFamily: RM_F.serif, fontSize: 22, color: "#FBF7F0", letterSpacing: "-0.02em" }}>RoomMade</div>
+          </div>
           <div style={{ fontFamily: RM_F.sans, fontSize: 9, letterSpacing: "0.18em", color: "rgba(251,247,240,0.72)", textTransform: "uppercase" }}>New York</div>
         </div>
         <div style={{ position: "absolute", left: 22, right: 40, bottom: 22 }}>
@@ -97,7 +100,10 @@ function ScreenA2({ go, state }) {
     <RMScreen tab="A2" onNav={go}>
       <div style={{ padding: "56px 20px 0" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-          <div style={{ fontFamily: RM_F.serif, fontSize: 23, letterSpacing: "-0.02em" }}>RoomMade</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <img src="assets/rm-logo-mark.png" alt="RARITAG" style={{ height: 42, width: 42, objectFit: "contain", display: "block", flex: "none" }} />
+            <div style={{ fontFamily: RM_F.serif, fontSize: 23, letterSpacing: "-0.02em" }}>RoomMade</div>
+          </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <button type="button" onClick={() => go("C1")} style={{
               width: 30, height: 30, borderRadius: 100, border: "1px solid " + RM_C.line,
