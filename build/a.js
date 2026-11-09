@@ -145,9 +145,9 @@
       fontSize: 11.5,
       fontWeight: 600,
       cursor: "pointer"
-    } }, muted ? "Sound on" : "Sound off"), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, fontFamily: RM_F.sans, fontSize: 9.5, lineHeight: 1.5, color: "rgba(251,247,240,0.55)", alignSelf: "center" } }, "Plays inline \xB7 tap to pause"))) : /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px 18px" } }, /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 0, borderRadius: 12, overflow: "hidden", background: "#000" } }, /* @__PURE__ */ React.createElement("img", { src: RM_CASES.waldorf.photos[viewer.i], alt: "", style: { width: "100%", height: "100%", objectFit: "contain", display: "block" } })), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 6, marginTop: 12, flex: "none", overflowX: "auto", paddingBottom: 2 } }, RM_CASES.waldorf.photos.map((p, i) => /* @__PURE__ */ React.createElement("button", { type: "button", key: p, onClick: () => setViewer({ kind: "photos", i }), style: {
-      width: 44,
-      height: 44,
+    } }, muted ? "Sound on" : "Sound off"), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, fontFamily: RM_F.sans, fontSize: 9.5, lineHeight: 1.5, color: "rgba(251,247,240,0.55)", alignSelf: "center" } }, "Plays inline \xB7 tap to pause"))) : /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px 8px" } }, /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minHeight: 0, borderRadius: 12, overflow: "hidden", background: "#000" } }, /* @__PURE__ */ React.createElement("img", { src: RM_CASES.waldorf.photos[viewer.i], alt: "", style: { width: "100%", height: "100%", objectFit: "contain", display: "block" } })), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 6, marginTop: 10, flex: "none", overflowX: "auto", paddingBottom: 2 } }, RM_CASES.waldorf.photos.map((p, i) => /* @__PURE__ */ React.createElement("button", { type: "button", key: p, onClick: () => setViewer({ kind: "photos", i }), style: {
+      width: 40,
+      height: 40,
       flex: "none",
       borderRadius: 7,
       overflow: "hidden",
