@@ -195,14 +195,14 @@ function ScreenA2({ go, state }) {
             </div>
           </div>
         ) : (
-          <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px 18px" }}>
+          <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 12px 8px" }}>
             <div style={{ flex: 1, minHeight: 0, borderRadius: 12, overflow: "hidden", background: "#000" }}>
               <img src={RM_CASES.waldorf.photos[viewer.i]} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
             </div>
-            <div style={{ display: "flex", gap: 6, marginTop: 12, flex: "none", overflowX: "auto", paddingBottom: 2 }}>
+            <div style={{ display: "flex", gap: 6, marginTop: 10, flex: "none", overflowX: "auto", paddingBottom: 2 }}>
               {RM_CASES.waldorf.photos.map((p, i) => (
                 <button type="button" key={p} onClick={() => setViewer({ kind: "photos", i })} style={{
-                  width: 44, height: 44, flex: "none", borderRadius: 7, overflow: "hidden", padding: 0, cursor: "pointer",
+                  width: 40, height: 40, flex: "none", borderRadius: 7, overflow: "hidden", padding: 0, cursor: "pointer",
                   border: i === viewer.i ? "2px solid #FBF7F0" : "2px solid transparent", background: "none", opacity: i === viewer.i ? 1 : 0.55
                 }}>
                   <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
