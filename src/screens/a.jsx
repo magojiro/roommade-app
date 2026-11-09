@@ -153,7 +153,7 @@ function ScreenA2({ go, state }) {
   return (
     <RMScreen tab="A2" onNav={go} overlay={viewer && (
       <div style={{
-        position: "absolute", inset: 0, zIndex: 40, background: "rgba(14,11,8,0.94)",
+        position: "absolute", inset: 0, zIndex: 40, background: "#0E0B08",
         display: "flex", flexDirection: "column"
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "56px 16px 10px", flex: "none" }}>
