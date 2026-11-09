@@ -109,7 +109,7 @@
       position: "absolute",
       inset: 0,
       zIndex: 40,
-      background: "rgba(14,11,8,0.94)",
+      background: "#0E0B08",
       display: "flex",
       flexDirection: "column"
     } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "56px 16px 10px", flex: "none" } }, /* @__PURE__ */ React.createElement("div", { style: { minWidth: 0 } }, /* @__PURE__ */ React.createElement("div", { style: { fontFamily: RM_F.sans, fontSize: 13, fontWeight: 600, color: "#FBF7F0" } }, viewer.kind === "video" ? "Carlyle Hotel \xB7 renovation" : "Waldorf Astoria \xB7 8-year renovation"), /* @__PURE__ */ React.createElement("div", { style: { fontFamily: RM_F.sans, fontSize: 10, color: "rgba(251,247,240,0.6)", marginTop: 2 } }, viewer.kind === "video" ? "01:51 \xB7 via \u8BBE\u8BA1\u5B66\u957F on RED" : String(viewer.i + 1) + " / " + RM_CASES.waldorf.photos.length + " \xB7 via \u5916\u6EE9\u8BBE\u8BA1\u9152\u5E97 on RED")), /* @__PURE__ */ React.createElement("button", { type: "button", onClick: () => setViewer(null), style: {
